@@ -1,0 +1,10 @@
+bashFile
+cross_valid.py
+cv_gbt.py
+cv_rf.py
+data_process.py
+jupyter.ipynb
+MalwareDetectionPipeline.png
+README.md
+train_samples.csv
+train_samples_field_names.xlsx
