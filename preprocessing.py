@@ -279,7 +279,7 @@ def accuracy_score(truth, predicted):
     """
     return len(np.where(truth==predicted)[0]) / len(truth)
 
-def cross_validation(data,k):
+def cross_validation(data,k,file_out=False,filter_columns=False,min_sample=2):
     """ This function takes the raw data and divided into
     k chunks of train and test samples. Given these train
     and test samples, the data is clean in the preprocessing
@@ -296,19 +296,32 @@ def cross_validation(data,k):
     cv = KFold(n_splits=k)
     accuracies = []
     t=0
-    clf=RandomForestClassifier()
+    clf=RandomForestClassifier(min_samples_split=min_sample)
     X=data.iloc[:,:-1]
     labels=data.iloc[:,-1]
     for train_idx, test_idx in cv.split(X):
         xlabel=labels[train_idx]
         ylabel=labels[test_idx]
         x,y=preProcessing(X.iloc[train_idx,:],X.iloc[test_idx,:],xlabel)
-        clf.fit(x, xlabel)
-        predicted = clf.predict(y)
-        acc = accuracy_score(ylabel, predicted)
+        if filter_columns:
+            with open("columns_saved","w") as ofile:
+                for column in [x.columns]:
+                    ofile.write(str(column)+"\n")
+            clf.fit(x.loc[:,filter_columns], xlabel)
+            predicted = clf.predict(y.loc[:,filter_columns])
+            acc = accuracy_score(ylabel, predicted)
+        else:
+            
+            clf.fit(x, xlabel)
+            predicted = clf.predict(y)
+            acc = accuracy_score(ylabel, predicted)
+            
+        if file_out:
+            with open(file_out,'a') as f:
+                f.write(str(acc)+"\n")
         accuracies.append(acc)
     avg = np.mean(accuracies)
-    print(accuracies)
+    #print(accuracies)
     return avg
 
 def countNan(series):

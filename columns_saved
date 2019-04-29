@@ -1,0 +1,16 @@
+Index(['EngineVersion', 'AppVersion', 'AvSigVersion', 'RtpStateBitfield',
+       'IsSxsPassiveMode', 'DefaultBrowsersIdentifier',
+       'AVProductStatesIdentifier', 'AVProductsInstalled', 'AVProductsEnabled',
+       'HasTpm',
+       ...
+       'Census_FirmwareManufacturerIdentifier_820.0',
+       'Census_FirmwareManufacturerIdentifier_827.0',
+       'Census_FirmwareManufacturerIdentifier_839.0',
+       'Census_FirmwareManufacturerIdentifier_845.0',
+       'Census_FirmwareManufacturerIdentifier_869.0',
+       'Census_FirmwareManufacturerIdentifier_892.0',
+       'Census_FirmwareManufacturerIdentifier_897.0',
+       'Census_FirmwareManufacturerIdentifier_1014.0',
+       'Census_FirmwareManufacturerIdentifier_1030.0',
+       'Census_FirmwareManufacturerIdentifier_1075.0'],
+      dtype='object', length=459)
